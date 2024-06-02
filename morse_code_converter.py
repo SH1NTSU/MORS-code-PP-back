@@ -17,3 +17,5 @@ def FromStrToMorseCode(string):
         else:
             converted_string += " "
     return converted_string
+
+print(FromStrToMorseCode("Hello World"))

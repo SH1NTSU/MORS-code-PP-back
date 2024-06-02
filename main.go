@@ -1,15 +1,20 @@
 package main
 
 import (
+	"MORS-code/convert"
+	"log"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	app.Use(logger.New())
+	app.Use(cors.New())
 
-	app.Listen(":3000")
+	app.Post("/convert", convert.ConvertText)
+	log.Fatal(app.Listen(":3000"))
 }
